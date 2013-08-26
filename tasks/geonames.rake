@@ -12,10 +12,10 @@ namespace :geonames do
     db_path = "./db/geonames.bin"
     zipdatafile = "./tmp/allCountries.zip"
     rawdata = "./tmp/allCountries.txt"
-    data_headers = ["Country","Zip","City","Province","Province Shortcode","Place","City Shortcode","Region","Region Shortcode","Latitude","Longitude","Accuracy"]
+    data_headers = ["country","zip","city","province","province shortcode","place","city shortcode","region","region shortcode","latitude","longitude","accuracy"]
     canada_data_path = "./db/raw/canada.csv"
 
-    result_headers = ["Zip", "City", "Province"]
+    result_headers = ["zip", "city", "province"]
 
     if File.exist?(db_path)
       File.delete(db_path)
@@ -46,9 +46,9 @@ namespace :geonames do
           data.gsub!('\'','')
 
           CSV.parse(data, {:col_sep => "\t", :headers=>data_headers, :force_quotes => true}).each do |row|
-            next unless "US" == row["Country"]
+            next unless "US" == row["country"]
 
-            addresses[row["Zip"].upcase] = row.to_hash.select {|k,v| result_headers.include?(k) }
+            addresses[row["zip"].upcase] = row.to_hash.select {|k,v| result_headers.include?(k) }
           end
         end
       end

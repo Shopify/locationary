@@ -4,7 +4,7 @@ require "./lib/locationary"
 class LookupTests < MiniTest::Unit::TestCase
   def setup
     # @kanata = {"Postal Code"=>"K2K2K1", "Latitude"=>"45.3261190000", "Longitude"=>"-75.9106530000", "City"=>"Kanata", "Province"=>"Ontario", "Country" => "Canada"}
-    @address = {"Zip"=>"90210", "Province"=>"California", "City"=>"Beverly Hills"}
+    @address = {"zip"=>"90210", "province"=>"California", "city"=>"Beverly Hills"}
   end
 
   def test_strict_lookup_fails_quietly_on_wrong_data
@@ -17,10 +17,9 @@ class LookupTests < MiniTest::Unit::TestCase
 
   def test_headers_correct
     louisville = Locationary.find("40202")
-    assert_equal "Louisville", louisville['City']
-    assert_equal "40202", louisville['Zip']
-    assert_equal "US", louisville['Country']
-    assert_equal "Kentucky", louisville['Province']
+    assert_equal "Louisville", louisville['city']
+    assert_equal "40202", louisville['zip']
+    assert_equal "Kentucky", louisville['province']
   end
 
 end

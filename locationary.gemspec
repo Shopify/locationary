@@ -25,7 +25,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "zip"
   spec.add_runtime_dependency "snappy"
   spec.add_runtime_dependency "pry"
-  spec.add_runtime_dependency "levenshtein-ffi"
-  spec.add_runtime_dependency "kdtree"
-  spec.add_runtime_dependency "fast_xor"
 end

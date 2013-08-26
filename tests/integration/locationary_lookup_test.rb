@@ -8,14 +8,10 @@ class LookupTests < MiniTest::Unit::TestCase
   end
 
   def test_strict_lookup_fails_quietly_on_wrong_data
-    assert_equal nil, Locationary.find("foobar",{:strict => true})
+    assert_equal nil, Locationary.find("foobar")
   end
 
   def test_strict_lookup_works_on_valid_data
-    assert_equal @address, Locationary.find("90210",{:strict => true})
-  end
-
-  def test_postalcode_convenience_method
-    assert_equal @address, Locationary.find_by_postalcode("90210", {:strict => true})
+    assert_equal @address, Locationary.find("90210")
   end
 end

@@ -15,7 +15,7 @@ namespace :geonames do
     data_headers = ["Country","Zip","City","Province","Province Shortcode","Place","City Shortcode","Region","Region Shortcode","Latitude","Longitude","Accuracy"]
     canada_data_path = "./db/raw/canada.csv"
 
-    result_headers = ["Zip", "City", "Province", "Country"]
+    result_headers = ["Zip", "City", "Province"]
 
     if File.exist?(db_path)
       File.delete(db_path)

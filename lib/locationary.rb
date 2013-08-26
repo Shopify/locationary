@@ -8,14 +8,14 @@ module Locationary
     Locationary.data[query]
   end
 
+  private
+
   def Locationary.data
     @data ||= Locationary.load_data
   end
 
-  private
-
   def Locationary.load_data
     raw = File.read("#{File.dirname(__FILE__)}/../db/geonames.bin")
-    @data = MessagePack.unpack(Snappy.inflate(raw))
+    MessagePack.unpack(Snappy.inflate(raw))
   end
 end

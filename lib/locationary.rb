@@ -1,4 +1,3 @@
-require "locationary/nearest_neighbour"
 require "locationary/version"
 require "msgpack"
 require "snappy"

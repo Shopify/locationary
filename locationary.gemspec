@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rake"
   spec.add_runtime_dependency "msgpack"
   spec.add_runtime_dependency "minitest"
-  spec.add_runtime_dependency "zip"
+  spec.add_runtime_dependency "zipruby", "0.3.6"
   spec.add_runtime_dependency "snappy"
   spec.add_runtime_dependency "pry"
 end

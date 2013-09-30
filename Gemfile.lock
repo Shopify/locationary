@@ -17,14 +17,14 @@ PATH
       pry
       rake
       snappy
-      zip
+      zipruby (= 0.3.6)
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.0.9)
     method_source (0.8.2)
-    minitest (5.0.6)
+    minitest (5.0.7)
     msgpack (0.5.5)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -35,7 +35,7 @@ GEM
       rake
     slop (3.4.6)
     snappy (0.0.8)
-    zip (2.0.2)
+    zipruby (0.3.6)
 
 PLATFORMS
   ruby

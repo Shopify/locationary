@@ -1,7 +1,7 @@
 require 'msgpack'
 require 'net/http'
 require 'csv'
-require 'zip/zip'
+require 'zipruby'
 require 'snappy'
 require 'benchmark'
 
@@ -36,19 +36,27 @@ namespace :geonames do
     addresses = {}
 
     parse_time = Benchmark.measure do
-      Zip::ZipFile.open(zipdatafile) do |zipfile|
-        zipfile.each do |file|
-          FileUtils.mkdir_p(File.dirname(rawdata))
-          zipfile.extract(file, rawdata) unless File.exist?(rawdata)
-          data = File.read(rawdata)
+      Zip::Archive.open(zipdatafile) do |archive|
+        archive.num_files.times do |i|
+          archive.fopen(i) do |file|
+            FileUtils.mkdir_p(File.dirname(rawdata))
+            
+            unless File.exist?(rawdata)
+              open(rawdata, 'wb') do |f|
+                f << file.read
+              end
+            end
 
-          data.gsub!('"','')
-          data.gsub!('\'','')
+            data = File.read(rawdata)
 
-          CSV.parse(data, {:col_sep => "\t", :headers=>data_headers, :force_quotes => true}).each do |row|
-            next unless "US" == row["country"]
+            data.gsub!('"','')
+            data.gsub!('\'','')
 
-            addresses[row["zip"].upcase] = row.to_hash.select {|k,v| result_headers.include?(k) }
+            CSV.parse(data, {:col_sep => "\t", :headers=>data_headers, :force_quotes => true}).each do |row|
+              next unless "US" == row["country"]
+
+              addresses[row["zip"].upcase] = row.to_hash.select {|k,v| result_headers.include?(k) }
+            end
           end
         end
       end

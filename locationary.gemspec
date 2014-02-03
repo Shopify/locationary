@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Locationary::VERSION
   spec.authors       = ["Oren Mazor"]
   spec.email         = ["oren.mazor@gmail.com"]
-  spec.description   = "Ruby Gem to normalize and auto-correct location information"
-  spec.summary       = "Ruby Gem to normalize and auto-correct location information"
-  spec.homepage      = ""
+  spec.description   = "Gem to normalize and auto-correct location information"
+  spec.summary       = "Gem to normalize and auto-correct location information"
+  spec.homepage      = "https://github.com/Shopify/locationary"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

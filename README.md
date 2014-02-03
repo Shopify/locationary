@@ -1,6 +1,6 @@
 # Locationary
 
-TODO: Write a gem description
+Gem to normalize and auto-correct location information
 
 ## Installation
 

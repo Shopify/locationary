@@ -2,6 +2,8 @@
 
 Gem to normalize and auto-correct location information
 
+[![Build Status](https://travis-ci.org/Shopify/locationary.png)](https://travis-ci.org/Shopify/locationary)
+
 ## Installation
 
 Add this line to your application's Gemfile:

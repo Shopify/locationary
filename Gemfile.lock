@@ -11,7 +11,7 @@ PATH
   remote: .
   specs:
     locationary (0.0.3)
-      bundler (~> 1.3)
+      bundler
       minitest
       msgpack
       pry
@@ -22,19 +22,19 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    coderay (1.0.9)
+    coderay (1.1.0)
     method_source (0.8.2)
-    minitest (5.0.7)
-    msgpack (0.5.5)
-    pry (0.9.12.2)
-      coderay (~> 1.0.5)
+    minitest (5.2.2)
+    msgpack (0.5.8)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
     rake (10.1.0)
     rake-compiler (0.9.1)
       rake
-    slop (3.4.6)
-    snappy (0.0.8)
+    slop (3.4.7)
+    snappy (0.0.10)
     zipruby (0.3.6)
 
 PLATFORMS

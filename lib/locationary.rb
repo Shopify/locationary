@@ -4,17 +4,17 @@ require "snappy"
 
 module Locationary
 
-  def Locationary.find(query)
-    Locationary.data[query]
+  def self.find(query)
+    data[query]
   end
 
   private
 
-  def Locationary.data
-    @data ||= Locationary.load_data
+  def self.data
+    @data ||= load_data
   end
 
-  def Locationary.load_data
+  def self.load_data
     raw = File.read("#{File.dirname(__FILE__)}/../db/geonames.bin")
     MessagePack.unpack(Snappy.inflate(raw))
   end

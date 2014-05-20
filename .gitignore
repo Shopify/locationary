@@ -17,3 +17,4 @@ tmp/allCountries.txt
 tmp/allCountries.zip
 db/kdtree.bin
 db/lookup.txt
+Gemfile.lock

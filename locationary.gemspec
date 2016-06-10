@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "msgpack"
-  spec.add_runtime_dependency "zipruby", "0.3.6"
+  spec.add_runtime_dependency "rubyzip", "~> 1.2.0"
   spec.add_runtime_dependency "snappy"
 
   spec.add_development_dependency "bundler"

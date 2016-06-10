@@ -1,19 +1,17 @@
 require 'msgpack'
 require 'net/http'
 require 'csv'
-require 'zipruby'
+require 'zip'
 require 'snappy'
 require 'benchmark'
 
 namespace :geonames do
   desc 'create database'
   task :create do
-    target_environment = "#{ENV['RACK_ENV']}"
     db_path = "./db/geonames.bin"
     zipdatafile = "./tmp/allCountries.zip"
     rawdata = "./tmp/allCountries.txt"
     data_headers = ["country","zip","city","province","province shortcode","place","city shortcode","region","region shortcode","latitude","longitude","accuracy"]
-    canada_data_path = "./db/raw/canada.csv"
 
     result_headers = ["zip", "city", "province"]
 
@@ -36,27 +34,25 @@ namespace :geonames do
     addresses = {}
 
     parse_time = Benchmark.measure do
-      Zip::Archive.open(zipdatafile) do |archive|
-        archive.num_files.times do |i|
-          archive.fopen(i) do |file|
-            FileUtils.mkdir_p(File.dirname(rawdata))
-            
-            unless File.exist?(rawdata)
-              open(rawdata, 'wb') do |f|
-                f << file.read
-              end
+      Zip::File.open(zipdatafile) do |archive|
+        archive.each do |file|
+          FileUtils.mkdir_p(File.dirname(rawdata))
+
+          unless File.exist?(rawdata)
+            open(rawdata, 'wb') do |f|
+              f << file.get_input_stream.read
             end
+          end
 
-            data = File.read(rawdata)
+          data = File.read(rawdata)
 
-            data.gsub!('"','')
-            data.gsub!('\'','')
+          data.gsub!('"','')
+          data.gsub!('\'','')
 
-            CSV.parse(data, {:col_sep => "\t", :headers=>data_headers, :force_quotes => true}).each do |row|
-              next unless "US" == row["country"]
+          CSV.parse(data, {:col_sep => "\t", :headers=>data_headers, :force_quotes => true}).each do |row|
+            next unless "US" == row["country"]
 
-              addresses[row["zip"].upcase] = row.to_hash.select {|k,v| result_headers.include?(k) }
-            end
+            addresses[row["zip"].upcase] = row.to_hash.select {|k,v| result_headers.include?(k) }
           end
         end
       end

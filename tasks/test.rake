@@ -5,7 +5,7 @@ task :default => ['test']
 task :test    => ['test:unit', 'test:integration']
 
 namespace :test do
-  desc "Run integration tests"
+  desc "Run unit tests"
   Rake::TestTask.new(:unit) do |t|
     t.pattern = 'tests/unit/*_test.rb'
     t.libs << 'test'
